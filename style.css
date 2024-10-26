@@ -1,75 +1,85 @@
-/* Main layout */
+/* Main container */
 body, html {
     margin: 0;
     padding: 0;
-    display: flex;
     height: 100vh;
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-}
-
-/* Sidebar */
-.sidebar {
-    width: 250px;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-}
-
-.sidebar h2 {
-    margin: 0;
-    padding: 10px;
-}
-
-.sidebar button {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.price-tracker {
-    margin-top: 20px;
-}
-
-#suiPrice {
-    font-size: 24px;
-    font-weight: bold;
-    color: #FFD700;
-}
-
-/* Content Area */
-.content {
-    flex: 1;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    align-items: center;
+    background-color: black;
+    font-family: Arial, sans-serif;
+    color: white;
 }
 
-.abstract-geometry {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: url('abstract-geometry.png') center/cover no-repeat;
-    opacity: 0.2;
-    z-index: 0;
+/* Container for content */
+.container {
+    width: 300px;
+    text-align: center;
 }
 
-h1, p {
-    z-index: 1;
-    color: #333;
+/* Tabs at the top */
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.tab {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+.tab.active {
+    background-color: white;
+    color: black;
+}
+
+/* Wallet section */
+.wallet-section {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.wallet-icon {
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 0 auto 15px auto;
+}
+
+.wallet-address {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.trend, .total-crypto {
+    font-size: 14px;
+    margin: 8px 0;
+    color: #aaa;
+}
+
+/* Connect Wallet Button */
+.connect-button {
+    padding: 10px 20px;
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.connect-button:hover {
+    background-color: white;
+    color: black;
 }
