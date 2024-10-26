@@ -3,25 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deeper Slate</title>
+    <title>Deeper Slate - SUI Tracker</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Web3.js for Ethereum wallet connection -->
+    <!-- Web3.js and Wallet SDKs -->
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Deeper Slate</h1>
-        <p>Explore blockchain data and connect your wallet.</p>
+    <!-- Sidebar for Wallet Connection and SUI Price -->
+    <div class="sidebar">
+        <h2>Deeper Slate</h2>
         <button id="connectButton">Connect Wallet</button>
         <p id="walletAddress"></p>
-        <p id="balance"></p>
-
-        <!-- Placeholder for future features -->
-        <div class="placeholder">
-            <h2>Future Features</h2>
-            <p>Transaction history, real-time blockchain stats, and more.</p>
+        
+        <div class="price-tracker">
+            <h3>Live SUI Price</h3>
+            <p id="suiPrice">$--.--</p>
         </div>
     </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="abstract-geometry">
+            <!-- Background abstract geometry -->
+        </div>
+        <h1>Welcome to Deeper Slate</h1>
+        <p>Track live SUI prices and connect your wallet.</p>
+    </div>
+
+    <!-- App.js for Wallet and SUI price handling -->
     <script src="app.js"></script>
 </body>
 </html>
