@@ -39,6 +39,15 @@ body, html {
     color: black;
 }
 
+/* Content Sections */
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
 /* Wallet section */
 .wallet-section {
     background-color: #222;
