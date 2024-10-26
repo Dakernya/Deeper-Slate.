@@ -1,34 +1,41 @@
-// Check if MetaMask is installed
+// Check if MetaMask or SUI Wallet is installed
 window.addEventListener('DOMContentLoaded', () => {
     if (typeof window.ethereum !== 'undefined') {
-        console.log('MetaMask is installed!');
+        console.log('Ethereum-compatible wallet is installed!');
     } else {
-        alert('Please install MetaMask to use this feature.');
+        alert('Please install MetaMask or SUI Wallet to use this feature.');
     }
 });
 
-// Connect to wallet and fetch balance
+// Connect Wallet
 document.getElementById('connectButton').addEventListener('click', async () => {
     if (window.ethereum) {
         try {
-            // Request wallet connection
             await window.ethereum.request({ method: 'eth_requestAccounts' });
             const accounts = await ethereum.request({ method: 'eth_accounts' });
             const walletAddress = accounts[0];
             document.getElementById('walletAddress').innerText = `Connected: ${walletAddress}`;
-
-            // Initialize Web3
-            const web3 = new Web3(window.ethereum);
-
-            // Fetch and display balance
-            const balanceWei = await web3.eth.getBalance(walletAddress);
-            const balanceEther = web3.utils.fromWei(balanceWei, 'ether');
-            document.getElementById('balance').innerText = `Balance: ${balanceEther} ETH`;
         } catch (error) {
             console.error(error);
             alert('Failed to connect wallet');
         }
     } else {
-        alert('MetaMask is not installed. Please install it to use this feature.');
+        alert('MetaMask or SUI Wallet is not installed. Please install to use this feature.');
     }
 });
+
+// Fetch Live SUI Coin Price (Using CoinGecko API as an example)
+async function fetchSuiPrice() {
+    try {
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=sui&vs_currencies=usd');
+        const data = await response.json();
+        const price = data.sui.usd;
+        document.getElementById('suiPrice').innerText = `$${price.toFixed(2)}`;
+    } catch (error) {
+        console.error('Failed to fetch SUI price:', error);
+    }
+}
+
+// Fetch price on load and refresh every minute
+fetchSuiPrice();
+setInterval(fetchSuiPrice, 60000); // Refresh every 60 seconds
