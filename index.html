@@ -2,35 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deeper Slate - SUI Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Deeper Slate - Wallet Dashboard</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Web3.js and Wallet SDKs -->
+    <!-- Web3.js for Wallet Connection -->
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 </head>
 <body>
-    <!-- Sidebar for Wallet Connection and SUI Price -->
-    <div class="sidebar">
-        <h2>Deeper Slate</h2>
-        <button id="connectButton">Connect Wallet</button>
-        <p id="walletAddress"></p>
+    <div class="container">
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab active">Stake</button>
+            <button class="tab">Markets</button>
+            <button class="tab">Pools</button>
+        </div>
         
-        <div class="price-tracker">
-            <h3>Live SUI Price</h3>
-            <p id="suiPrice">$--.--</p>
+        <!-- Wallet Section -->
+        <div class="wallet-section">
+            <div class="wallet-icon"></div>
+            <p class="wallet-address">Wallet Address<br><span id="walletAbbreviation">Not connected</span></p>
+            <p class="trend">Trend Up (total cost)</p>
+            <p class="trend">Trend Down (total cost)</p>
+            <p class="total-crypto">Total crypto amount</p>
         </div>
+
+        <!-- Connect Wallet Button -->
+        <button id="connectButton" class="connect-button">Connect Wallet</button>
     </div>
 
-    <!-- Main Content -->
-    <div class="content">
-        <div class="abstract-geometry">
-            <!-- Background abstract geometry -->
-        </div>
-        <h1>Welcome to Deeper Slate</h1>
-        <p>Track live SUI prices and connect your wallet.</p>
-    </div>
-
-    <!-- App.js for Wallet and SUI price handling -->
+    <!-- App.js for Wallet and Functionality -->
     <script src="app.js"></script>
 </body>
 </html>
