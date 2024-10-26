@@ -1,37 +1,75 @@
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+/* Main layout */
+body, html {
     margin: 0;
-    background-color: #f4f7fa;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
 }
 
-.container {
-    text-align: center;
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #ffffff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
 }
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: #0078D4;
-    color: white;
+.sidebar h2 {
+    margin: 0;
+    padding: 10px;
 }
 
-.placeholder {
+.sidebar button {
     margin-top: 20px;
     padding: 10px;
-    border-top: 1px solid #ddd;
-    color: #777;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.price-tracker {
+    margin-top: 20px;
+}
+
+#suiPrice {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFD700;
+}
+
+/* Content Area */
+.content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+}
+
+.abstract-geometry {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url('abstract-geometry.png') center/cover no-repeat;
+    opacity: 0.2;
+    z-index: 0;
+}
+
+h1, p {
+    z-index: 1;
+    color: #333;
 }
