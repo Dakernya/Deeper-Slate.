@@ -6,16 +6,17 @@ window.addEventListener('DOMContentLoaded', () => {
         alert('Please install MetaMask or SUI Wallet to use this feature.');
     }
 
-    // Fetch live prices for the Markets section on load
+    // Fetch live prices and historical data for chart on load
     fetchLivePrices();
+    fetchHistoricalData();
 });
 
 // Tab switching function
 function showSection(sectionId) {
     document.querySelectorAll('.content-section').forEach(section => {
-        section.style.display = 'none';
+        section.classList.remove('active');
     });
-    document.getElementById(sectionId).style.display = 'block';
+    document.getElementById(sectionId).classList.add('active');
 
     document.querySelectorAll('.tab').forEach(tab => {
         tab.classList.remove('active');
@@ -23,7 +24,7 @@ function showSection(sectionId) {
     document.querySelector(`.tab[onclick="showSection('${sectionId}')"]`).classList.add('active');
 }
 
-// Connect Wallet
+// Connect Wallet and show balance
 document.getElementById('connectButton').addEventListener('click', async () => {
     if (window.ethereum) {
         try {
@@ -32,6 +33,10 @@ document.getElementById('connectButton').addEventListener('click', async () => {
             const walletAddress = accounts[0];
             const walletAbbreviation = walletAddress.slice(0, 6) + '...' + walletAddress.slice(-4);
             document.getElementById('walletAbbreviation').innerText = walletAbbreviation;
+
+            const web3 = new Web3(window.ethereum);
+            const balance = await web3.eth.getBalance(walletAddress);
+            document.getElementById('walletBalance').innerText = `Balance: ${web3.utils.fromWei(balance, 'ether')} ETH`;
         } catch (error) {
             console.error(error);
             alert('Failed to connect wallet');
@@ -54,3 +59,36 @@ async function fetchLivePrices() {
         console.error('Failed to fetch live prices:', error);
     }
 }
+
+// Fetch historical data for the price chart
+async function fetchHistoricalData() {
+    try {
+        const response = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7');
+        const data = await response.json();
+        const prices = data.prices.map(price => price[1]);
+        const labels = data.prices.map(price => new Date(price[0]).toLocaleDateString());
+
+        createPriceChart(labels, prices);
+    } catch (error) {
+        console.error('Failed to fetch historical data:', error);
+    }
+}
+
+// Create price chart using Chart.js
+function createPriceChart(labels, prices) {
+    const ctx = document.getElementById('priceChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Bitcoin Price (7 Days)',
+                data: prices,
+                borderColor: '#4CAF50',
+                borderWidth: 2,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            scales
